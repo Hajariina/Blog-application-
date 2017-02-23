@@ -1,45 +1,47 @@
 html
 	head
 		title View all posts
-		link(rel='stylesheet', type='text/css', href='../css/css.css')
-		link(href='https://fonts.googleapis.com/css?family=Pangolin', rel='stylesheet')
-	body#backgroundShowPosts
-		#containerShowPosts
-			.post
-				h1 This is a test
-				h6 by Lisa
-				p Oh really?
-			.commentbox
-				.comment
+		include ../static/pug/head-tags.pug
+	body
+		include ../static/pug/header.pug
+		#backgroundShowPosts
+			#containerShowPosts
+				.post
+					h1 This is a test
 					h6 by Lisa
-					p Responding to my own posts 8)
-			.post
-				h1 Look at my message!
-				h6 by Lisa
-				p It is so beautiful! I like dogs. COOKIES!!! 
-				p My mind goes like this: 
-				p fhwoajkkaj fjkanawhr oijeaoifkljauiwj fioahf wojfjk aerh ioalkwjgvoiarhfikjhaw uijfiwohfkjawiu htwehjgaev uithjgowjarkhg oihawcithg hweklang uaiojwrnsdkc
-			.commentbox
-				.comment
-					h6 by Hajar
-					p You are insane. Just sayin' ;)
-				.comment
+					p Oh really?
+				.commentbox
+					.comment
+						h6 by Lisa
+						p Responding to my own posts 8)
+				.post
+					h1 Look at my message!
 					h6 by Lisa
-					p Why? I can write whatever I want on this page!
-				.comment
+					p It is so beautiful! I like dogs. COOKIES!!! 
+					p My mind goes like this: 
+					p fhwoajkkaj fjkanawhr oijeaoifkljauiwj fioahf wojfjk aerh ioalkwjgvoiarhfikjhaw uijfiwohfkjawiu htwehjgaev uithjgowjarkhg oihawcithg hweklang uaiojwrnsdkc
+				.commentbox
+					.comment
+						h6 by Hajar
+						p You are insane. Just sayin' ;)
+					.comment
+						h6 by Lisa
+						p Why? I can write whatever I want on this page!
+					.comment
+						h6 by Hajar
+						p Then I will delete it after the merge!
+					.comment
+						h6 by Jessy
+						p Girls, no fighting...
+				.post
+					h1 We are the best programmers!
 					h6 by Hajar
-					p Then I will delete it after the merge!
-				.comment
-					h6 by Jessy
-					p Girls, no fighting...
-			.post
-				h1 We are the best programmers!
-				h6 by Hajar
-				p Nobody is better than us! Maybe Jessy, but nobody else.
-			.commentbox
-				.comment
-					h6 by Jessy
-					p Thanks :)
-				.comment
-					h6 by Melvin
-					p lol
+					p Nobody is better than us! Maybe Jessy, but nobody else.
+				.commentbox
+					.comment
+						h6 by Jessy
+						p Thanks :)
+					.comment
+						h6 by Melvin
+						p lol
+		include ../static/pug/footer.pug

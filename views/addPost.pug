@@ -1,15 +1,17 @@
 html
 	head
 		title Add a post
-		link(rel='stylesheet', type='text/css', href='../css/css.css')
-		link(href='https://fonts.googleapis.com/css?family=Pangolin', rel='stylesheet')
-	body#backgroundAddPosts
-		#containerAddPosts
-			form(action="/allposts" method="post")
-				fieldset#addpost
-					p Title
-					input(type="text" name="title")
-					p Content
-					textarea(name="content")
-					br
-					input#btn(type="submit" name="submit")
+		include ../static/pug/head-tags
+	body
+		include ../static/pug/header.pug
+		#backgroundAddPosts
+			#containerAddPosts
+				form(action="/allposts" method="post")
+					fieldset#addpost
+						p Title
+						input(type="text" name="title")
+						p Content
+						textarea(name="content")
+						br
+						input#btn(type="submit" name="submit")
+		include ../static/pug/footer.pug
