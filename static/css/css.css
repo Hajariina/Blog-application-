@@ -1,0 +1,140 @@
+#backgroundindex {
+ background: url(../img/532326610.jpg) no-repeat center fixed;
+ background-size: cover;
+}
+
+h2 {
+color: #f44336;
+position: relative;
+left: 35%;
+top: 45%;
+}
+
+h3 {
+color: #f44346;
+text-align: center;
+}
+
+.button {
+  display: inline-block;
+  border-radius: 12px;
+  background-color: #f44336;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  position: static;
+  top: 75px;
+  left: 80px;
+
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/*show posts page*/
+#backgroundShowPosts {
+  background: url(../img/showposts-background.jpg) no-repeat center fixed; 
+  background-size: cover;
+}
+
+#containerShowPosts {
+  width: 60%;
+  margin: auto;
+}
+
+.post {
+  background-color: white;
+  opacity: 0.95;
+  border-radius: 5px;
+  color: #f44336;
+  margin-top: 15px;
+  padding: 10px 20px;
+}
+
+.post h6 {
+  border-bottom: 1px solid grey;
+  margin: 15px 0px;
+  padding-bottom: 2px;
+}
+
+.commentbox {
+  background-color: #d2d2d2;
+  opacity: 0.95;
+  width: 90%;
+  color: #f44336;
+  margin: auto;
+  border-radius: 0px 0px 5px 5px;
+  padding: 0px 5px 5px 5px;
+}
+
+.comment h6 {
+  margin-top: 0px;
+  border-top: 1px solid grey;
+  margin-bottom: 15px;
+}
+/*show end*/
+
+/*add page*/
+#backgroundAddPosts {
+  background: url(../img/addposts-background.jpg) no-repeat center fixed; 
+  background-size: cover;
+}
+
+#containerAddPosts {
+  width: 400px;
+  margin:auto;
+  margin-top: 200px;
+}
+
+#addpost{
+  background-color: white;
+  color: #f44336;
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
+#addpost textarea {
+  width: 100%;
+}
+
+#btn {
+  background-color: #f44336;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  width: 75px;
+  float: right;
+}
+
+/*add end*/

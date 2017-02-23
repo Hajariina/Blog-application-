@@ -1,1 +1,28 @@
-signup
+html
+	head
+		title Login Page
+		link(rel='stylesheet', type='text/css', href='../css/login.css')
+		//- link(rel='stylesheet', type='text/css', href='../js/login.js')
+
+		link(href='https://fonts.googleapis.com/css?family=Pangolin', rel='stylesheet')
+	body#backgroundlogin
+		include ../static/pug/header.pug
+		include ../static/pug/footer.pug
+	form.login
+		fieldset
+		legend.legend Sign-up
+		.input
+			input(type='firstname', placeholder='Firstname', required='')
+			span
+				i.fa.fa-envelope-o
+		.input
+			input(type='lastname', placeholder='Lastname', required='')
+			span
+				i.fa.fa-envelope-o
+		.input
+			input(type='email', placeholder='Email', required='')
+			span
+				i.fa.fa-lock
+		|  
+		button.submit(type='submit')
+				i.fa.fa-long-arrow-right

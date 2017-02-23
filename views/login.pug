@@ -2,15 +2,55 @@ html
 	head
 		title Login Page
 		link(rel='stylesheet', type='text/css', href='../css/login.css')
+		link(rel='stylesheet', type='text/css', href='../js/login.js')
+
 		link(href='https://fonts.googleapis.com/css?family=Pangolin', rel='stylesheet')
 	body#backgroundlogin
-		h1 Welcome beauty
-		h3 Please fill in your log-in:
-		form#formlogin
-			| First name: 
-			input(id="formfirstname" type='text', name='firstname')
-			|  Last name: 
-			input(id="formlastname" type='text', name='lastname')
-			|  
-			input(class="button1" type='submit', value='Submit')
+		include ../static/pug/header.pug
+		include ../static/pug/footer.pug
+	form.login
+		fieldset
+		legend.legend Login
+		.input
+			input(type='email', placeholder='Email', required='')
+			span
+				i.fa.fa-envelope-o
+		.input
+			input(type='password', placeholder='Password', required='')
+			span
+				i.fa.fa-lock
+		|  
+		button.submit(type='submit')
+				i.fa.fa-long-arrow-right
+		//- .feedback
+		//- | login successful
+		//- br
+		//- |  redirecting...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	//- body#backgroundlogin
+	//- 	h1 Welcome beauty
+	//- 	h3 Please fill in your log-in:
+	//- 	form#formlogin
+	//- 		| First name: 
+	//- 		input(id="formfirstname" type='text', name='firstname')
+	//- 		|  Last name: 
+	//- 		input(id="formlastname" type='text', name='lastname')
+	//- 		|  
+	//- 		input(class="button1" type='submit', value='Submit')
 

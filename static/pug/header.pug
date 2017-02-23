@@ -1,0 +1,37 @@
+doctype html
+html(lang='en')
+  head
+    title Bootstrap Case
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js')
+  body
+    nav.navbar.navbar-inverse
+      .container-fluid
+        .navbar-header
+          a.navbar-brand(href='/') Tsjappie B.V.
+        ul.nav.navbar-nav
+          li.active
+            a(href='/') Home
+          li.dropdown
+            a.dropdown-toggle(data-toggle='dropdown', href='#')
+              | Posts
+              span.caret
+            ul.dropdown-menu
+              li
+                a(href='addPost') add Post
+              li
+                a(href='showPost') show Posts
+          li
+            a(href='profile') Profile
+        ul.nav.navbar-nav.navbar-right
+          li
+            a(href='signup')
+              span.glyphicon.glyphicon-user
+              |  Sign Up
+          li
+            a(href='login')
+              span.glyphicon.glyphicon-log-in
+              |  Login
