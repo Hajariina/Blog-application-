@@ -27,14 +27,14 @@ DONE- file structure
 DONE- first push to github
 - make header for all pug 							Hajar
 - make footer for all pug							HaJARRRR
-- routes:
+DONE- routes:
 	- app.get('/for every page')
 		response.render('corresponding pug file')	Lisa
-- database blogapplication aanmaken 				Lisa
+DONE- database blogapplication aanmaken 				Lisa
 - make addpost 										
 - make login 										HaJARRR
 - make profile										
-- make showPosts 									Lisa
+DONE- make showPosts 								Lisa
 - make signup										HaJARRRR
 - tables and data in app.js
 	- user
@@ -42,7 +42,7 @@ DONE- first push to github
 
 
 Pages
-- index.pug:
+DONE- index.pug:
 	- big photo on the background
 	- two buttons:
 		- log in 		--> redirect to login page
@@ -60,7 +60,7 @@ Pages
 		- email
 		- password
 		- submit		--> redirect to login page
-- showPosts.pug:
+DONE- showPosts.pug:
 	- vertical 
 	- colorful background
 	- each post:

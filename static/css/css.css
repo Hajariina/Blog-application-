@@ -1,6 +1,6 @@
-html { 
-  background: url(../img/532326610.jpg) no-repeat center fixed; 
-  background-size: cover;
+#backgroundindex {
+ background: url(../img/532326610.jpg) no-repeat center fixed;
+ background-size: cover;
 }
 
 h2 {
@@ -57,4 +57,46 @@ text-align: center;
 .button:hover span:after {
   opacity: 1;
   right: 0;
+}
+
+/*show posts page*/
+#backgroundShowPosts {
+  background: url(../img/showposts-background.jpg) no-repeat center fixed; 
+  background-size: cover;
+}
+
+#containerShowPosts {
+  width: 60%;
+  margin: auto;
+}
+
+.post {
+  background-color: white;
+  opacity: 0.95;
+  border-radius: 5px;
+  color: #f44336;
+  margin-top: 15px;
+  padding: 10px 20px;
+}
+
+.post h6 {
+  border-bottom: 1px solid grey;
+  margin: 15px 0px;
+  padding-bottom: 2px;
+}
+
+.commentbox {
+  background-color: #d2d2d2;
+  opacity: 0.95;
+  width: 90%;
+  color: #f44336;
+  margin: auto;
+  border-radius: 0px 0px 5px 5px;
+  padding: 0px 5px 5px 5px;
+}
+
+.comment h6 {
+  margin-top: 0px;
+  border-top: 1px solid grey;
+  margin-bottom: 15px;
 }
