@@ -1,12 +1,12 @@
-- git init
-- npm init
+DONE- git init
+DONE- npm init
 	- express
 	- pug
 	- pg
 	- sequelize
 	- cookie-parser
 	- body-parser
-- file structure
+DONE- file structure
 	- app.js
 	- static
 		- modules
@@ -24,12 +24,21 @@
 		- profile.pug
 	- .gitignore
 		- node_modules
-- first push to github
-- make header for all pug 
-- make footer for all pug
+DONE- first push to github
+- make header for all pug 							Hajar
+- make footer for all pug							HaJARRRR
 - routes:
 	- app.get('/for every page')
-		response.render('corresponding pug file')
+		response.render('corresponding pug file')	Lisa
+- database blogapplication aanmaken 				Lisa
+- make addpost 										
+- make login 										HaJARRR
+- make profile										
+- make showPosts 									Lisa
+- make signup										HaJARRRR
+- tables and data in app.js
+	- user
+	- message
 
 
 Pages
