@@ -68,7 +68,7 @@ DONE- showPosts.pug:
 		- username
 		- post
 		- comments (maybe light grey background)
-- addPost.pug:
+DONE - addPost.pug:
 	- max 255 char
 	- centered
 	- two input fields
