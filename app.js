@@ -43,7 +43,7 @@ app.get ('/', (request, response) => {
 });
 
 // renders corresponding login.pug file
-app.get ('login', (request, response) => {
+app.get ('/login', (request, response) => {
 	response.render('login');
 });
 
