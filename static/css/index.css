@@ -3,14 +3,14 @@
   background-size: cover;
 }
 
-h1 {
+.index-h1 {
 color: #f44336;
 position: relative;
 left: 250px;
 top: 95px;
 }
 
-h3 {
+.index-h3 {
 color: #f44346;
 position: relative;
 left: 250px;
