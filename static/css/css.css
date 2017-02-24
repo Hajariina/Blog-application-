@@ -63,11 +63,14 @@ text-align: center;
 #backgroundShowPosts {
   background: url(../img/showposts-background.jpg) no-repeat center fixed; 
   background-size: cover;
+  padding-top: 20px;
 }
 
 #containerShowPosts {
   width: 60%;
   margin: auto;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
 }
 
 .post {
