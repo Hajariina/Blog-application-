@@ -1,11 +1,12 @@
 html
 	head
 		title Blog Application
+		include ../static/pug/head-tags.pug
+
 		link(rel='stylesheet', type='text/css', href='../css/index.css')
 		link(href='https://fonts.googleapis.com/css?family=Pangolin', rel='stylesheet')
 	body#backgroundindex
 		include ../static/pug/header.pug
-		include ../static/pug/footer.pug
 		h1.index-h1 Welcome beauty
 		h3.index-h3 Please choose one of the options:
 		button.button(onclick="location.href='/login';",style='vertical-align:middle')
@@ -14,3 +15,4 @@ html
 		|  
 		button.button(onclick="location.href='/signup';",style='vertical-align:middle')
 			span Sign up
+			include ../static/pug/footer.pug

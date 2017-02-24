@@ -52,6 +52,7 @@
   position: relative;
   width: 90%;
   margin: 15px auto;
+  border: 1px solid #FF7052;
   
   span{
     position: absolute;
