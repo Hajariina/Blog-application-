@@ -16,11 +16,11 @@ html
 			span
 				i.fa.fa-envelope-o
 		.input
-			input(onclick="location.href='/showPosts';", type='password', placeholder='Password')
+			input(type='password', placeholder='Password')
 			span
 				i.fa.fa-lock
 		|  
-		button.submit(type='submit')
+		button.submit(onclick="location.href='/showPosts';", type='submit')
 				i.fa.fa-long-arrow-right
 		//- .feedback
 		//- | login successful

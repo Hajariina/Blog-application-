@@ -67,6 +67,7 @@ app.get ('/allposts', (request, response) => {
 	response.render('showPosts');
 });
 
+
 // create app.post for the login page. This is because the client has to fill in something on that page
 
 
