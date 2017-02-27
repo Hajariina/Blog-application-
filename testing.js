@@ -86,44 +86,56 @@ app.get ('/addpost', (request, response) => {
 });
 
 // renders corresponding profile.pug file
-// app.get ('/profile', (request, response) => {
-// 	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})
-// 	.then(function(result){
-// 		console.log('now console logging the result')
-// 		console.log(result[0].comments[0].userId)
-// 		return result
-// 	})
-// 	.then(function(result){
-// 		var allMessages = result;
-// 		Comment.findAll({include: [User, Message]})
-// 		.then(function(result){
-// 			response.render('profile', {messages: allMessages, comments: result});
-// 		})
-// 	})
-// });
-
-User.findAll()
-.then(function(result) {
-	for(var i = 0; i < result.length; i++) {
-		var userName = result[i].username
-		console.log(result[i].username)
-		app.get('/profile/' + userName, (req, res) => {
-			console.log("now consolelogging result[i]: " + result[i])
-			Message.findAll({
-				order:[['createdAt', 'DESC']], 
-				include: [User, Comment]
-			})
-			.then(function(result){
-				var allMessages = result;
-				console.log("now consolelogging userName again: " + userName)
-				Comment.findAll({include: [User, Message]})
-				.then(function(result){
-					res.render('profile', {messages: allMessages, comments: result});
-				})
-			})
+app.get ('/profile', (request, response) => {
+	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})
+	.then(function(result){
+		console.log('now console logging the result')
+		console.log(result[0].comments[0].userId)
+		return result
+	})
+	.then(function(result){
+		var allMessages = result;
+		Comment.findAll({include: [User, Message]})
+		.then(function(result){
+			response.render('profile', {messages: allMessages, comments: result});
 		})
-	}
-})
+	})
+});
+
+// app.get('/profilePage', (req, res) => {
+// 	console.log(req.query.id)
+// 	Post.findOne({
+// 		where: {id: req.query.id}
+// 	}).then(post => {
+// 		res.render('oneSpecificPost', post)
+// 	})
+	
+// })
+
+// User.findAll()
+// .then(function(result) {
+// 	for(var i = 0; i < result.length; i++) {
+// 		console.log(result[i].username)
+// 		var userName = result[i].username
+// 		app.get('/profile/' + userName, (req, res) => {
+// 			console.log("now consolelogging result[0].username: ")
+// 			console.log(this.username)
+// 			console.log(result)
+// 			Message.findAll({
+// 				order:[['createdAt', 'DESC']], 
+// 				include: [User, Comment]
+// 			})
+// 			.then(function(result){
+// 				var allMessages = result;
+// 				// console.log("now consolelogging userName again: " + )
+// 				Comment.findAll({include: [User, Message]})
+// 				.then(function(result){
+// 					res.render('profile', {messages: allMessages, comments: result});
+// 				})
+// 			})
+// 		})
+// 	}
+// })
 
 // renders corresponding showPosts.pug file -- needs testing
 app.get ('/allposts', (request, response) => {

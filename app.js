@@ -139,28 +139,6 @@ app.post('/allposts', (req, res) => {
 	});
 });
 
-/* app.post('/addpost', (req, res) => {
-	let userTitleInput = req.body.title;
-	let userMessageInput = req.body.message;
-	let user = req.session.user;
-	console.log(user);
-	if (user === undefined) {
-		res.redirect('/?message=' + encodeURIComponent("Please log in to create a post."));
-	} 
-	else {
-		User.findById(user.id).then(function(user){
-			user.createPost({
-				title: req.body.titleInput,
-				body: req.body.messageInput
-			})
-			.then(function(post) {
-				console.log('redirecting to allPosts')
-				res.redirect('allPosts');
-			})
-		})
-		
-	}
-});*/
 
 // renders corresponding profile.pug file
 app.get ('/profile', (request, response) => {

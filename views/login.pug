@@ -4,20 +4,21 @@ html
 		include ../static/pug/head-tags.pug
 	body#backgroundlogin
 		include ../static/pug/header.pug
-	form.login
-		fieldset
-		legend.legend Login
-		.input
-			input(type='email', placeholder='Username')
-			span
-				i.fa.fa-envelope-o
-		.input
-			input(type='password', placeholder='Password')
-			span
-				i.fa.fa-lock
-		|  
-		button.submit(onclick="location.href='/profile';", type='submit')
-				i.fa.fa-long-arrow-right
+		form.login(action="/login" method="post")
+			fieldset
+			legend.legend Login
+			.input
+				input(type='text', placeholder='Username' name='username')
+				span
+					i.fa.fa-envelope-o
+			.input
+				input(type='password', placeholder='Password' name='password')
+				span
+					i.fa.fa-lock
+			|  
+			button.submit(onclick="location.href='/profile';", type='submit')
+					i.fa.fa-long-arrow-right
+		include ../static/pug/footer.pug
 		//- .feedback
 		//- | login successful
 		//- br
