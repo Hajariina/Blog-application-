@@ -133,12 +133,23 @@ app.post('/allposts', (req, res) => {
 		content: req.body.content,
 		userId: req.session.user.id
 	})
-
 	.then(function(){
 		res.redirect('/allPosts');
 	});
 });
 
+app.post('/postcomment', (req, res) =>{
+	console.log(req.body.comment);
+	console.log(req.session.user.id);
+	Comment.create({ //changed to database name
+		content: req.body.comment,
+		userId: req.session.user.id,
+		// messageId: 
+	})
+	.then(()=>{
+		res.redirect('/allposts'); 
+	})
+})
 
 // renders corresponding profile.pug file
 app.get ('/profile', (request, response) => {
