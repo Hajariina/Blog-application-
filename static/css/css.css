@@ -117,7 +117,7 @@ text-align: center;
   background: url(../img/addposts-background.jpg) no-repeat center fixed; 
   background-size: cover;
   padding-top: 200px;
-  padding-bottom: 200px;
+  height: 90%;
 }
 
 #containerAddPosts {
@@ -153,6 +153,8 @@ text-align: center;
 #background-profile {
   background: url(../img/profile-background.jpg) no-repeat center fixed; 
   background-size: cover;
+  padding-top: 20px;
+  height: 90%;
 }
 
 #name {
