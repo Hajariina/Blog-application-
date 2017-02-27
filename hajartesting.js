@@ -99,7 +99,9 @@ app.post('/login', function (req, res) {
 
     where: {
 
-        name: req.body.name
+		username: req.body.username,
+
+		password: req.body.password
 
     }
 
@@ -111,7 +113,7 @@ app.post('/login', function (req, res) {
 
       req.session.user = user;
 
-      res.redirect('/'); //redirect to the allPosts or Profile 
+      res.redirect('/profile'); //redirect to the allPosts or Profile 
 
     }
 
@@ -165,7 +167,7 @@ app.get ('/addpost', (req, res) => {
 });
 
 app.post('/addpost', (req, res) => {
-	console.log('checking what is insinde sequelize.Post')
+	console.log('checking what is inside sequelize.Post')
 	console.log (sequelize.Post)
 	sequelize.Post.create ({
 		title: req.body.titleInput,
