@@ -4,16 +4,15 @@ html
 		include ../static/pug/head-tags.pug
 	body#backgroundlogin
 		include ../static/pug/header.pug
-		include ../static/pug/footer.pug
 	form.login
 		fieldset
 		legend.legend Sign-up
 		.input
-			input(type='firstname', placeholder='Firstname', required='')
+			input(type='username', placeholder='Username', required='')
 			span
 				i.fa.fa-envelope-o
 		.input
-			input(type='lastname', placeholder='Lastname', required='')
+			input(type='password', placeholder='Password', required='')
 			span
 				i.fa.fa-envelope-o
 		.input

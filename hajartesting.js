@@ -62,6 +62,10 @@ User.hasMany(Comment);
 //In Comment table the attribute messageID is now created:
 Message.hasMany(Comment);
 
+Message.belongsTo(User);
+Comment.belongsTo(User);
+Comment.belongsTo(Message);
+
 // renders corresponding index.pug file
 app.get ('/', (request, response) => {
 	response.render('index');
@@ -73,9 +77,9 @@ app.get ('/login', (request, response) => {
 });
 
 //not sure if I have to put bodyparser here again
-app.post('/login', bodyParser.urlencoded({extended: true}), function (req, res) {
-
-    if(req.body.email.length === 0) {
+app.post('/login', function (req, res) {
+	console.log(req.body.name)
+    if(req.body.name.length === 0) {
 
         res.redirect('/?message=' + encodeURIComponent("Please fill out in your username."));
 
@@ -91,11 +95,11 @@ app.post('/login', bodyParser.urlencoded({extended: true}), function (req, res) 
 
    }
 
-   db.User.findOne({ //blogapplication should be the name of the database
+   sequelize.User.findOne({ //blogapplication should be the name of the database
 
     where: {
 
-        email: req.body.email
+        name: req.body.name
 
     }
 
@@ -130,13 +134,13 @@ app.get ('/signup', (request, response) => {
 	response.render('signup');
 });
 
-//posts request formulier naar db.
+//posts request formulier naar database which is stored in sequelize.
 
 app.post('signup', function(req, res){
 
 	console.log('signup post request is working')  //testing purposes
 
-	db.User.create({ //change to blogapplication database
+	sequelize.User.create({ //changed to database name
 
 		username: req.body.username,
 
@@ -148,7 +152,7 @@ app.post('signup', function(req, res){
 
 	.then(()=>{
 
-		res.redirect('/'); // link to allPosts or Profile - discuss with Lisa
+		res.redirect('/login'); 
 
 	})
 
@@ -161,9 +165,9 @@ app.get ('/addpost', (req, res) => {
 });
 
 app.post('/addpost', (req, res) => {
-	console.log('checking what is insinde db.Post')
-	console.log (db.Post)
-	db.Post.create ({
+	console.log('checking what is insinde sequelize.Post')
+	console.log (sequelize.Post)
+	sequelize.Post.create ({
 		title: req.body.titleInput,
 		body: req.body.messageInput
 	})
@@ -201,9 +205,16 @@ app.get ('/profile', (request, response) => {
 	response.render('profile');
 });
 
-// renders corresponding showPosts.pug file
+// renders corresponding showPosts.pug file -- needs testing
 app.get ('/allposts', (request, response) => {
-	response.render('showPosts');
+	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})
+	.then(function(result){
+		var allMessages = result;
+		Comment.findAll({include: [User, Message]})
+		.then(function(result){
+			response.render('showPosts', {messages: allMessages, comments: result});
+		})
+	})
 });
 
 
@@ -236,15 +247,74 @@ app.get('/logout', function (req, res) {
 
 
 sequelize
-	.sync()
+	.sync({force:true})
 	.then(function(){
-		User.create({
+		return User.create({
 			username: "Hajar",
 			password: "notsafe",
 			email: "hajarthebest@gmail.com"
 		})
 	})
-
+	.then(function(person){
+		return person.createMessage({
+			title: "We are the best programmers!",
+			content: "Nobody is better than us! Maybe Jessy, but nobody else.",
+		})
+	})
+	.then(function(){
+		return User.create({
+			username: "Jessy",
+			password: "notsafe",
+			email: "jessythebest@gmail.com"
+		})
+	})
+	.then(function(person){
+		return person.createComment({
+			content: "Thanks :)",
+			messageId: 1
+		})
+	})
+	.then(function(){
+		return User.create({
+			username: "Melvin",
+			password: "notsafe",
+			email: "melvinthebest@gmail.com"
+		})
+	})
+	.then(function(person){
+		return person.createComment({
+			content: "lol",
+			messageId: 1
+		})
+	})
+	.then(function(){
+		Message.create({
+			title: "Crazy testing",
+			content: "fja joiaf jawkrl0",
+			userId: 2
+		})
+	})
+	.then(function(){
+		Comment.create({
+			content: "lol",
+			messageId: 2,
+			userId: 1
+		})
+	})	
+	.then(function(){
+		Message.create({
+			title: "Teaching is awesome",
+			content: "I love it so much!",
+			userId: 3
+		})
+	})
+	.then(function(){
+		Comment.create({
+			content: "And we love having you as a teacher",
+			messageId: 3,
+			userId: 1
+		})
+	})
 	.then(function(){
 
 		app.listen(3000, () => {

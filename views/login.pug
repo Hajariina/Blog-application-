@@ -1,18 +1,14 @@
 html
 	head
 		title Login Page
-		link(rel='stylesheet', type='text/css', href='../css/login.css')
-		link(rel='stylesheet', type='text/css', href='../js/login.js')
-
-		link(href='https://fonts.googleapis.com/css?family=Pangolin', rel='stylesheet')
+		include ../static/pug/head-tags.pug
 	body#backgroundlogin
 		include ../static/pug/header.pug
-		include ../static/pug/footer.pug
 	form.login
 		fieldset
 		legend.legend Login
 		.input
-			input(type='email', placeholder='Email')
+			input(type='email', placeholder='Username')
 			span
 				i.fa.fa-envelope-o
 		.input
@@ -20,7 +16,7 @@ html
 			span
 				i.fa.fa-lock
 		|  
-		button.submit(onclick="location.href='/showPosts';", type='submit')
+		button.submit(onclick="location.href='/profile';", type='submit')
 				i.fa.fa-long-arrow-right
 		//- .feedback
 		//- | login successful
