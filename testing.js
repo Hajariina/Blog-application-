@@ -61,6 +61,9 @@ User.hasMany(Comment);
 //In Comment table the attribute messageID is now created:
 Message.hasMany(Comment);
 
+Message.belongsTo(User);
+Comment.belongsTo(User);
+Comment.belongsTo(Message);
 
 // renders corresponding index.pug file
 app.get ('/', (request, response) => {
@@ -89,9 +92,18 @@ app.get ('/profile', (request, response) => {
 
 // renders corresponding showPosts.pug file -- needs testing
 app.get ('/allposts', (request, response) => {
-	Message.findAll({order:[['createdAt', 'DESC']]})
+	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})
 	.then(function(result){
-		response.render('showPosts', {messages: result});
+		console.log('now console logging the result')
+		console.log(result[0].comments[0].userId)
+		return result
+	})
+	.then(function(result){
+		var allMessages = result;
+		Comment.findAll({include: [User, Message]})
+		.then(function(result){
+					response.render('showPosts', {messages: allMessages, comments: result});
+		})
 	})
 });
 
@@ -115,47 +127,58 @@ app.post('/allposts', (request, response) => {
 sequelize
 	.sync({force:true})
 	.then(function(){
-		User.create({
+		return User.create({
 			username: "Hajar",
 			password: "notsafe",
 			email: "hajarthebest@gmail.com"
 		})
 	})
-	.then(function(){
-		Message.create({
+	.then(function(person){
+		return person.createMessage({
 			title: "We are the best programmers!",
 			content: "Nobody is better than us! Maybe Jessy, but nobody else.",
-			userId: 1
 		})
 	})
 	.then(function(){
-		User.create({
+		return User.create({
 			username: "Jessy",
 			password: "notsafe",
 			email: "jessythebest@gmail.com"
 		})
 	})
-	.then(function(){
-		Comment.create({
+	.then(function(person){
+		return person.createComment({
 			content: "Thanks :)",
-			messageId: 1,
-			userId: 2
+			messageId: 1
 		})
 	})
 	.then(function(){
-		User.create({
+		return User.create({
 			username: "Melvin",
 			password: "notsafe",
 			email: "melvinthebest@gmail.com"
 		})
 	})
+	.then(function(person){
+		return person.createComment({
+			content: "lol",
+			messageId: 1
+		})
+	})
+	.then(function(){
+		Message.create({
+			title: "Crazy testing",
+			content: "fja joiaf jawkrl0",
+			userId: 2
+		})
+	})
 	.then(function(){
 		Comment.create({
 			content: "lol",
-			messageId: 1,
-			userId: 3
+			messageId: 2,
+			userId: 1
 		})
-	})
+	})	
 	.then(function(){
 
 		app.listen(3000, () => {
