@@ -215,6 +215,13 @@ app.get('/logout', function (req, res) {
 
 sequelize
 	.sync()
+	.then(function(){
+		User.create({
+			username: "Hajar",
+			password: "notsafe",
+			email: "hajarthebest@gmail.com"
+		})
+	})
 
 	.then(function(){
 
