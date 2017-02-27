@@ -86,23 +86,53 @@ app.get ('/addpost', (request, response) => {
 });
 
 // renders corresponding profile.pug file
-app.get ('/profile', (request, response) => {
-	response.render('profile');
-});
+// app.get ('/profile', (request, response) => {
+// 	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})
+// 	.then(function(result){
+// 		console.log('now console logging the result')
+// 		console.log(result[0].comments[0].userId)
+// 		return result
+// 	})
+// 	.then(function(result){
+// 		var allMessages = result;
+// 		Comment.findAll({include: [User, Message]})
+// 		.then(function(result){
+// 			response.render('profile', {messages: allMessages, comments: result});
+// 		})
+// 	})
+// });
+
+User.findAll()
+.then(function(result) {
+	for(var i = 0; i < result.length; i++) {
+		var userName = result[i].username
+		console.log(result[i].username)
+		app.get('/profile/' + userName, (req, res) => {
+			console.log("now consolelogging result[i]: " + result[i])
+			Message.findAll({
+				order:[['createdAt', 'DESC']], 
+				include: [User, Comment]
+			})
+			.then(function(result){
+				var allMessages = result;
+				console.log("now consolelogging userName again: " + userName)
+				Comment.findAll({include: [User, Message]})
+				.then(function(result){
+					res.render('profile', {messages: allMessages, comments: result});
+				})
+			})
+		})
+	}
+})
 
 // renders corresponding showPosts.pug file -- needs testing
 app.get ('/allposts', (request, response) => {
 	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})
 	.then(function(result){
-		console.log('now console logging the result')
-		console.log(result[0].comments[0].userId)
-		return result
-	})
-	.then(function(result){
 		var allMessages = result;
 		Comment.findAll({include: [User, Message]})
 		.then(function(result){
-					response.render('showPosts', {messages: allMessages, comments: result});
+			response.render('showPosts', {messages: allMessages, comments: result});
 		})
 	})
 });
@@ -179,6 +209,20 @@ sequelize
 			userId: 1
 		})
 	})	
+	.then(function(){
+		Message.create({
+			title: "Teaching is awesome",
+			content: "I love it so much!",
+			userId: 3
+		})
+	})
+	.then(function(){
+		Comment.create({
+			content: "And we love having you as a teacher",
+			messageId: 3,
+			userId: 1
+		})
+	})
 	.then(function(){
 
 		app.listen(3000, () => {

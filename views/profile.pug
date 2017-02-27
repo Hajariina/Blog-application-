@@ -9,36 +9,18 @@ html
 				h1#name HaJARRRR Mokhtafa
 			#profile-container
 				#profile-posts
-					.post
-						h1 Look at my message!
-						h6 by Lisa
-						p It is so beautiful! I like dogs. COOKIES!!! 
-						p My mind goes like this: 
-						p fhwoajkkaj fjkanawhr oijeaoifkljauiwj fioahf wojfjk aerh ioalkwjgvoiarhfikjhaw uijfiwohfkjawiu htwehjgaev uithjgowjarkhg oihawcithg hweklang uaiojwrnsdkc
-					.commentbox
-						.comment
-							h6 by Hajar
-							p You are insane. Just sayin' ;)
-						.comment
-							h6 by Lisa
-							p Why? I can write whatever I want on this page!
-						.comment
-							h6 by Hajar
-							p Then I will delete it after the merge!
-						.comment
-							h6 by Jessy
-							p Girls, no fighting...
-					.post
-						h1 We are the best programmers!
-						h6 by Hajar
-						p Nobody is better than us! Maybe Jessy, but nobody else.
-					.commentbox
-						.comment
-							h6 by Jessy
-							p Thanks :)
-						.comment
-							h6 by Melvin
-							p lol
+					each post in messages
+						if post.user.username == user
+							.post
+								h1 #{post.title}
+								h6 by #{post.user.username}
+								p #{post.content}
+							.commentbox
+								each comment in comments
+									if comment.messageId == post.id
+										.comment
+											h6 #{comment.user.username}
+											p #{comment.content}
 				#profile-followers
 					#side
 						h3 Followers:
