@@ -75,58 +75,14 @@ app.get ('/login', (request, response) => {
 });
 
 //not sure if I have to put bodyparser here again
-app.post('/login', function (req, res) {
-	console.log(req.body.name)
-    if(req.body.name.length === 0) {
-
-        res.redirect('/?message=' + encodeURIComponent("Please fill out in your username."));
-
-        return;
-
-    }
-
-    if(req.body.password.length === 0) {
-
-       res.redirect('/?message=' + encodeURIComponent("Please fill out your password."));
-
-       return;
-
-   }
-
-   sequelize.User.findOne({ //blogapplication should be the name of the database
-
-    where: {
-
-		username: req.body.username,
-
-		password: req.body.password
-
-    }
-
-  })
-
-  .then (function (user) {
-
-    if (user !== null && req.body.password === user.password) {
-
-      req.session.user = user;
-
-      res.redirect('/profile'); //redirect to the allPosts or Profile 
-
-    }
-
-    else {
-
-            res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
-
-        }
-
-    }, function (error) {
-
-        res.redirect('/?message=' + encodeURIComponent("Invalid email or password."));
-
-    });
-
+app.post('/login', (req, res) => {
+	console.log(req.body.username)
+	if (req.body.username.length === 0){
+		res.redirect('/login/?message=' + encodeURIComponent("Please fill out your username."))
+	}
+	if (req.body.password.length === 0){
+		res.redirect('/login/?message=' + encodeURIComponent("Please fill out your password."))
+	}
 
 	User.findOne({
 		where: {
@@ -168,7 +124,6 @@ app.get ('/addpost', (req, res) => {
 	res.render('addPost', {user:userSession});
 });
 
-
 app.post('/allposts', (req, res) => {
 	// console.log('checking what is insinde sequelize.Post')
 	// console.log (sequelize.Post)
@@ -177,7 +132,6 @@ app.post('/allposts', (req, res) => {
 		title: req.body.title,
 		content: req.body.content,
 		userId: req.session.user.id
-
 	})
 
 	.then(function(){
@@ -185,28 +139,6 @@ app.post('/allposts', (req, res) => {
 	});
 });
 
-/* app.post('/addpost', (req, res) => {
-	let userTitleInput = req.body.title;
-	let userMessageInput = req.body.message;
-	let user = req.session.user;
-	console.log(user);
-	if (user === undefined) {
-		res.redirect('/?message=' + encodeURIComponent("Please log in to create a post."));
-	} 
-	else {
-		User.findById(user.id).then(function(user){
-			user.createPost({
-				title: req.body.titleInput,
-				body: req.body.messageInput
-			})
-			.then(function(post) {
-				console.log('redirecting to allPosts')
-				res.redirect('allPosts');
-			})
-		})
-		
-	}
-});*/
 
 // renders corresponding profile.pug file
 app.get ('/profile', (request, response) => {
