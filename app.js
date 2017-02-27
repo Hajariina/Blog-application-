@@ -108,7 +108,7 @@ app.get ('/signup', (request, response) => {
 
 app.post('signup', function(req, res){
 	console.log('signup post request is working')  //testing purposes
-	sequelize.User.create({ //changed to database name
+	User.create({ //changed to database name
 		username: req.body.username,
 		password: req.body.password,
 		email: req.body.email
