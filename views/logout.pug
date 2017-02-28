@@ -7,7 +7,7 @@ html
 
 		form.login(action="/login" method="post")
 			fieldset
-			legend.legend Sign-up
+			legend.legend Login
 			.input
 				input(type='text', placeholder='Username' name='username')
 				span
@@ -15,12 +15,8 @@ html
 			.input
 				input(type='password', placeholder='Password' name='password')
 				span
-					i.fa.fa-envelope-o
-			.input
-				input(type='email', placeholder='Email' name='email')
-				span
 					i.fa.fa-lock
 			|  
-			button.submit(onclick="location.href='/login';", type='submit')
+			button.submit(onclick="location.href='/profile';", type='submit')
 					i.fa.fa-long-arrow-right
 		include ../static/pug/footer.pug

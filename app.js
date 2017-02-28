@@ -106,7 +106,7 @@ app.get ('/signup', (request, response) => {
 
 //posts request formulier naar database which is stored in sequelize.
 
-app.post('signup', function(req, res){
+app.post('/signup', function(req, res){
 	console.log('signup post request is working')  //testing purposes
 	User.create({ //changed to database name
 		username: req.body.username,
@@ -194,7 +194,7 @@ app.get('/logout', function (req, res) {
 
     }
 
-      res.redirect( '/?message=' + encodeURIComponent("Succesfully logged out.") );
+      res.redirect('/logout/?message=' + encodeURIComponent("Succesfully logged out.") );
 
   })
 
