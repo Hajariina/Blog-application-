@@ -6,11 +6,11 @@ html
 		include ../static/pug/header.pug
 		#background-profile
 			div
-				h1#name HaJARRRR Mokhtafa
+				h1#name #{user.username}
 			#profile-container
 				#profile-posts
 					each post in messages
-						if post.user.username == "Hajar"
+						if post.user.username == user.username
 							.post
 								h1 #{post.title}
 								h6 by #{post.user.username}

@@ -8,7 +8,7 @@ html
 			#containerShowPosts
 				each post in messages
 					.post
-						a(href="/post/"+post.id) #{post.title}
+						h1 #{post.title}
 						h6 by #{post.user.username}
 						p #{post.content}
 					.commentbox
