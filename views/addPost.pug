@@ -6,12 +6,18 @@ html
 		include ../static/pug/header.pug
 		#backgroundAddPosts
 			#containerAddPosts
-				form(action="/allposts" method="post")
-					fieldset#addpost
-						p Title
-						input(type="text" name="title")
-						p Content
-						textarea(name="content")
-						br
-						input#btn(type="submit" name="submit")
+				if user
+					form(action="/allposts" method="post")
+						fieldset#addpost
+							p Title
+							input(type="text" name="title" class="inputfield")
+							p Content
+							textarea(name="content" class="inputfield")
+							br
+							input#btn(type="submit" name="submit")
+				else
+					.post
+						h1 Please log in to add a post
+						form(method="get" action="/login")
+							button#btn2(type="submit" value="login" name="redirect") Log in
 		include ../static/pug/footer.pug

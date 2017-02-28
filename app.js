@@ -66,12 +66,12 @@ Comment.belongsTo(Message);
 
 // renders corresponding index.pug file
 app.get ('/', (request, response) => {
-	response.render('index');
+	response.render('index', {user: request.session.user});
 });
 
 // renders corresponding login.pug file
 app.get ('/login', (request, response) => {
-	response.render('login');
+	response.render('login', {user: request.session.user});
 });
 
 //not sure if I have to put bodyparser here again
@@ -101,7 +101,7 @@ app.post('/login', (req, res) => {
 
 // renders corresponding signup.pug file
 app.get ('/signup', (request, response) => {
-	response.render('signup');
+	response.render('signup', {user: request.session.user});
 });
 
 //posts request formulier naar database which is stored in sequelize.
@@ -120,14 +120,13 @@ app.post('/signup', function(req, res){
 
 // renders corresponding addPost.pug file
 app.get ('/addpost', (req, res) => {
-	const userSession = req.session.user;
-	res.render('addPost', {user:userSession});
+	res.render('addPost', {user:req.session.user});
 });
 
 app.post('/allposts', (req, res) => {
 	// console.log('checking what is insinde sequelize.Post')
 	// console.log (sequelize.Post)
-	console.log(req.session.user)
+	// console.log(req.session.user)
 	Message.create ({
 		title: req.body.title,
 		content: req.body.content,
@@ -199,7 +198,7 @@ app.get ('/allposts', (request, response) => {
 		var allMessages = result;
 		Comment.findAll({include: [User, Message]})
 		.then(function(result){
-			response.render('showPosts', {messages: allMessages, comments: result});
+			response.render('showPosts', {messages: allMessages, comments: result, user: request.session.user});
 		})
 	})
 });

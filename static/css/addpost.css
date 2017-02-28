@@ -2,7 +2,7 @@
 #backgroundAddPosts {
   background: url(../img/addposts-background.jpg) no-repeat center fixed; 
   background-size: cover;
-  padding-top: 200px;
+  padding-top: 150px;
   height: 90%;
 }
 
@@ -11,15 +11,17 @@
   margin:auto
 }
 
+.inputfield {
+  width: 90%;
+  margin: 0px 10px;
+  border: 1px solid #FF7052;
+}
+
 #addpost{
   background-color: white;
   color: #f44336;
   border: 2px solid grey;
   border-radius: 5px;
-}
-
-#addpost textarea {
-  width: 100%;
 }
 
 #btn {
