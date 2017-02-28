@@ -106,7 +106,7 @@ app.get ('/signup', (request, response) => {
 
 //posts request formulier naar database which is stored in sequelize.
 
-app.post('signup', function(req, res){
+app.post('/signup', function(req, res){
 	console.log('signup post request is working')  //testing purposes
 	User.create({ //changed to database name
 		username: req.body.username,
@@ -138,13 +138,14 @@ app.post('/allposts', (req, res) => {
 	});
 });
 
-app.post('/postcomment', (req, res) =>{
+app.post('/postcomment/:postId', (req, res) =>{
 	console.log(req.body.comment);
 	console.log(req.session.user.id);
+	console.log(req.params.postId)
 	Comment.create({ //changed to database name
 		content: req.body.comment,
 		userId: req.session.user.id,
-		// messageId: 
+		messageId: req.params.postId 
 	})
 	.then(()=>{
 		res.redirect('/allposts'); 
