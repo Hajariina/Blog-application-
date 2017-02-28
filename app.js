@@ -163,14 +163,14 @@ app.get('/post/:postId', (req, res) => {
 app.post('/postcomment/:postId', (req, res) =>{
 	console.log(req.body.comment);
 	console.log(req.session.user.id);
-	console.log(req.params.postId)
+	console.log(req.params.postId) //2
 	Comment.create({ //changed to database name
 		content: req.body.comment,
 		userId: req.session.user.id,
-		messageId: req.params.postId 
+		messageId: parseInt(req.params.postId) 
 	})
 	.then(()=>{
-		res.redirect('/post/:postId'); 
+		res.redirect('/post/' + req.params.postId); 
 	})
 })
 
