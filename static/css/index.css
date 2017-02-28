@@ -6,14 +6,25 @@
 .index-h1 {
 color: #f44336;
 position: relative;
-left: 250px;
+left: 180px;
 top: 95px;
+width: 500px;
+
+}
+
+.index-h11 {
+color: #f44336;
+position: relative;
+left: 200px;
+top: 95px;
+width: 500px;
+
 }
 
 .index-h3 {
 color: #f44346;
 position: relative;
-left: 250px;
+left: -410px;
 top: 95px;
 }
 

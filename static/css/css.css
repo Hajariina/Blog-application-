@@ -27,13 +27,15 @@ text-align: center;
   width: 200px;
   transition: all 0.5s;
   cursor: pointer;
-  margin: 5px;
-  position: static;
-  top: 75px;
-  left: 80px;
+  margin-left: 240px;
+  position: relative; 
+  top: 100px;
+  left: 0px;
 
 }
-
+/* postition was static
+top: 75px
+left:80px*/
 .button span {
   cursor: pointer;
   display: inline-block;

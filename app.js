@@ -216,14 +216,11 @@ app.get('/logout', function (req, res) {
         throw error;
 
     }
-
-      res.redirect( '/?message=' + encodeURIComponent("Succesfully logged out.") );
+      res.render('logout');
 
   })
 
 })
-
-
 
 
 

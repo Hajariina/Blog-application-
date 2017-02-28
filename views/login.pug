@@ -4,6 +4,7 @@ html
 		include ../static/pug/head-tags.pug
 	body#backgroundlogin
 		include ../static/pug/header.pug
+
 		form.login(action="/login" method="post")
 			fieldset
 			legend.legend Login
@@ -19,6 +20,7 @@ html
 			button.submit(onclick="location.href='/profile';", type='submit')
 					i.fa.fa-long-arrow-right
 		include ../static/pug/footer.pug
+
 		//- .feedback
 		//- | login successful
 		//- br
