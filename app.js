@@ -138,13 +138,14 @@ app.post('/allposts', (req, res) => {
 	});
 });
 
-app.post('/postcomment', (req, res) =>{
+app.post('/postcomment/:postId', (req, res) =>{
 	console.log(req.body.comment);
 	console.log(req.session.user.id);
+	console.log(req.params.postId)
 	Comment.create({ //changed to database name
 		content: req.body.comment,
 		userId: req.session.user.id,
-		// messageId: 
+		messageId: req.params.postId 
 	})
 	.then(()=>{
 		res.redirect('/allposts'); 
