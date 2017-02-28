@@ -8,17 +8,7 @@ html
 			#containerShowPosts
 				each post in messages
 					.post
-						h1 #{post.title}
+						a(href="/post/"+post.id) #{post.title}
 						h6 by #{post.user.username}
 						p #{post.content}
-					.commentbox
-						each comment in comments
-							if comment.messageId == post.id
-								.comment
-									h6 #{comment.user.username}
-									p #{comment.content}
-						form(action="/postcomment/"+post.id method="post")
-							input(type="text" name="comment")
-							input#btn3(type="submit" value="comment" name="commenting")
-				
 		include ../static/pug/footer.pug

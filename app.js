@@ -138,6 +138,29 @@ app.post('/allposts', (req, res) => {
 	});
 });
 
+app.get('/post/:postId', (req, res) => {
+	Message.findOne({
+		where: {id: req.params.postId},
+		include: [User, Comment]
+	})
+	.then((result)=>{
+		var allMessages = result;
+		Comment.findAll({
+			include: [User, Message],
+		})
+		.then((result) => {
+			var specificPost = {
+				messages: allMessages,
+				comments: result,
+				user: req.session.user
+			}
+			console.log(allMessages.user.username)
+			res.render('post', specificPost)
+		})
+	})
+})
+
+
 app.post('/postcomment/:postId', (req, res) =>{
 	console.log(req.body.comment);
 	console.log(req.session.user.id);
@@ -148,23 +171,23 @@ app.post('/postcomment/:postId', (req, res) =>{
 		messageId: req.params.postId 
 	})
 	.then(()=>{
-		res.redirect('/allposts'); 
+		res.redirect('/post/:postId'); 
 	})
 })
 
 // renders corresponding profile.pug file
 app.get ('/profile', (request, response) => {
-	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})
+	Message.findAll({order:[['id', 'DESC']], include: [User, Comment]})
 	.then(function(result){
-		console.log('now console logging the result')
-		console.log(result[0].comments[0].userId)
+		// console.log('now console logging the result')
+		// console.log(result[0].comments[0].userId)
 		return result
 	})
 	.then(function(result){
 		var allMessages = result;
 		Comment.findAll({include: [User, Message]})
 		.then(function(result){
-			response.render('profile', {messages: allMessages, comments: result});
+			response.render('profile', {messages: allMessages, comments: result, user: request.session.user});
 		})
 	})
 });
@@ -257,7 +280,7 @@ sequelize
 	})
 	.then(function(){
 		Comment.create({
-			content: "lol",
+			content: "You go girl",
 			messageId: 2,
 			userId: 1
 		})
