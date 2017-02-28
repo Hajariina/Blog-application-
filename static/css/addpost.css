@@ -1,0 +1,37 @@
+/*add page*/
+#backgroundAddPosts {
+  background: url(../img/addposts-background.jpg) no-repeat center fixed; 
+  background-size: cover;
+  padding-top: 200px;
+  height: 90%;
+}
+
+#containerAddPosts {
+  width: 400px;
+  margin:auto
+}
+
+#addpost{
+  background-color: white;
+  color: #f44336;
+  border: 2px solid grey;
+  border-radius: 5px;
+}
+
+#addpost textarea {
+  width: 100%;
+}
+
+#btn {
+  background-color: #f44336;
+  border: none;
+  border-radius: 2px;
+  color: white;
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  width: 75px;
+  float: right;
+}
+/*add end*/
+

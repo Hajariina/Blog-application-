@@ -283,7 +283,7 @@ sequelize
 	})
 	.then(function(){
 		Comment.create({
-			content: "lol",
+			content: "You go girl",
 			messageId: 2,
 			userId: 1
 		})
