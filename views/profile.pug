@@ -6,10 +6,7 @@ html
 		include ../static/pug/header.pug
 		#background-profile
 			div
-				if user
-					h1#name #{user.username}
-				else
-					h1#name #{messages[0].user.username}
+				h1#name #{profileOfUser.username}
 			#profile-container
 				#profile-posts
 					each post in messages
@@ -34,18 +31,7 @@ html
 										button#btn2(type="submit" value="login" name="redirect") Log in
 				#profile-followers
 					#side
-						h3 Followers:
-						ul
-							li Lisa
-							li Jessy
-							li Melvin
-							li Gijs
-						input#btn2(type="submit" value="follow me" name="follow")
-						h3 I follow:
-						ul
-							li Jessy
-							li Gijs
-							li Lisa
-							li Melvin
-							li Bill
+						h3 Hi!
+						p My name is #{profileOfUser.username}. Welcome to my profile!
+						p Feel free to leave a comment on my posts :)
 		include ../static/pug/footer.pug
