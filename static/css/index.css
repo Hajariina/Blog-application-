@@ -3,12 +3,12 @@
   background-size: cover;
 }
 
-.index-h1 {
+/*.index-h1 {
 color: #f44336;
 position: relative;
 left: 180px;
 top: 95px;
-width: 500px;
+width: 500px;*/
 
 }
 
@@ -21,12 +21,12 @@ width: 500px;
 
 }
 
-.index-h3 {
+/*.index-h3 {
 color: #f44346;
 position: relative;
 left: -410px;
 top: 95px;
-}
+}*/
 
 .button {
   display: inline-block;
@@ -42,7 +42,7 @@ top: 95px;
   cursor: pointer;
   margin: 15px;
   position: relative;
-  top: 95px;
+  top: 70%;
   left: 240px;
 
 }

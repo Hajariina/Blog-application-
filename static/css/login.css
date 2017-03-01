@@ -8,6 +8,11 @@
   border: 0;
 }
 
+.inputfield1 {
+  width: 100%;
+  border: 1px solid #FF7052;
+}
+
 #backgroundlogin { 
   background: url(../img/mountains-1645078_960_720.jpg) no-repeat center fixed; 
   background-size: cover;
@@ -21,7 +26,7 @@
   display: table;
   margin: -150px auto 0 auto;
   background: #fff;
-  border-radius: 4px;
+  border-radius: 14px;
 }
 
 .legend{
@@ -35,7 +40,7 @@
   
   &:after{
     content: "";
-    background-image: url(http://simpleicon.com/wp-content/uploads/multy-user.png);
+    background-image: url(../img/multy-user.png);
     background-size: 100px 100px;
     background-repeat: no-repeat;
     background-position: 152px -16px;

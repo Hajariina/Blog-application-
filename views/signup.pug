@@ -6,17 +6,17 @@ html
 		include ../static/pug/header.pug
 		form.login(action="/signup" method="post")
 			fieldset
-			legend.legend Sign-up
+			legend.legend Sign Up
 			.input
-				input(type='text', placeholder='Username', required='' name="username")
+				input(type='text', placeholder='Username', required='' name="username" class='inputfield1')
 				span
 					i.fa.fa-envelope-o
 			.input
-				input(type='password', placeholder='Password', required='' name="password")
+				input(type='password', placeholder='Password', required='' name="password" class='inputfield1')
 				span
 					i.fa.fa-envelope-o
 			.input
-				input(type='email', placeholder='Email', required='' name="email")
+				input(type='email', placeholder='Email', required='' name="email" class='inputfield1')
 				span
 					i.fa.fa-lock
 			|  
