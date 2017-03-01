@@ -9,14 +9,14 @@
 }
 
 #backgroundlogin { 
-  background: url(../img/532326412.jpg) no-repeat center fixed; 
+  background: url(../img/mountains-1645078_960_720.jpg) no-repeat center fixed; 
   background-size: cover;
 }
 
 /*start styles in form*/
 .login{
   position: relative;
-  top: 250px;
+  top: 380px;
 	width: 250px;
   display: table;
   margin: -150px auto 0 auto;
