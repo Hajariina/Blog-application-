@@ -60,3 +60,14 @@ left:80px*/
   opacity: 1;
   right: 0;
 }
+
+#background-notexist {
+ background: url(../img/notexist.jpeg) no-repeat center fixed;
+ background-size: cover;
+}
+
+#notexist {
+  color: #f44336;
+  font-size: 50px;
+  padding-left: 20px;
+}

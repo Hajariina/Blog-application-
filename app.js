@@ -188,6 +188,11 @@ app.get ('/profile/:userName', (request, response) => {
 		include: [Message, Comment]
 	})
 	.then(function(user){
+		console.log(user)
+		if (user === null){
+			response.redirect('/notexist')
+		} 
+		var userURL = user
 		Message.findAll({
 			order:[['id', 'DESC']], 
 			include: [User, Comment],
@@ -199,33 +204,16 @@ app.get ('/profile/:userName', (request, response) => {
 			var allMessages = result;
 			Comment.findAll({include: [User, Message]})
 			.then(function(result){
-				response.render('profile', {messages: allMessages, comments: result, user: request.session.user});
+				response.render('profile', {profileOfUser: userURL, messages: allMessages, comments: result, user: request.session.user});
 			})
 		})
 	})
 });
 
-// app.get('/post/:postId', (req, res) => {
-// 	Message.findOne({
-// 		where: {id: req.params.postId},
-// 		include: [User, Comment]
-// 	})
-// 	.then((result)=>{
-// 		var allMessages = result;
-// 		Comment.findAll({
-// 			include: [User, Message],
-// 		})
-// 		.then((result) => {
-// 			var specificPost = {
-// 				messages: allMessages,
-// 				comments: result,
-// 				user: req.session.user
-// 			}
-// 			console.log(allMessages.user.username)
-// 			res.render('post', specificPost)
-// 		})
-// 	})
-// })
+app.get('/notexist', (req, res) =>{
+	res.render('notexist')
+})
+
 // renders corresponding showPosts.pug file -- needs testing
 app.get ('/allposts', (request, response) => {
 	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})
