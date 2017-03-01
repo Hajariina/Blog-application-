@@ -94,7 +94,7 @@ app.post('/login', (req, res) => {
 		bcrypt.compare(req.body.password, user.password, function(err, result) {
 			if(result === true) {
 				req.session.user = user;
-				res.redirect('/profile')
+				res.redirect('/profile/'+user.username)
 			} else {
 				res.redirect('/login/?message=' + encodeURIComponent("Invalid username or password."))
 			}
@@ -182,22 +182,50 @@ app.post('/postcomment/:postId', (req, res) =>{
 })
 
 // renders corresponding profile.pug file
-app.get ('/profile', (request, response) => {
-	Message.findAll({order:[['id', 'DESC']], include: [User, Comment]})
-	.then(function(result){
-		// console.log('now console logging the result')
-		// console.log(result[0].comments[0].userId)
-		return result
+app.get ('/profile/:userName', (request, response) => {
+	User.findOne({
+		where: {username: request.params.userName},
+		include: [Message, Comment]
 	})
-	.then(function(result){
-		var allMessages = result;
-		Comment.findAll({include: [User, Message]})
+	.then(function(user){
+		Message.findAll({
+			order:[['id', 'DESC']], 
+			include: [User, Comment],
+			where: {userId: user.id}
+		})
 		.then(function(result){
-			response.render('profile', {messages: allMessages, comments: result, user: request.session.user});
+			// console.log('now console logging the result')
+			// console.log(result[0].comments[0].userId)
+			var allMessages = result;
+			Comment.findAll({include: [User, Message]})
+			.then(function(result){
+				response.render('profile', {messages: allMessages, comments: result, user: request.session.user});
+			})
 		})
 	})
 });
 
+// app.get('/post/:postId', (req, res) => {
+// 	Message.findOne({
+// 		where: {id: req.params.postId},
+// 		include: [User, Comment]
+// 	})
+// 	.then((result)=>{
+// 		var allMessages = result;
+// 		Comment.findAll({
+// 			include: [User, Message],
+// 		})
+// 		.then((result) => {
+// 			var specificPost = {
+// 				messages: allMessages,
+// 				comments: result,
+// 				user: req.session.user
+// 			}
+// 			console.log(allMessages.user.username)
+// 			res.render('post', specificPost)
+// 		})
+// 	})
+// })
 // renders corresponding showPosts.pug file -- needs testing
 app.get ('/allposts', (request, response) => {
 	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})

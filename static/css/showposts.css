@@ -4,7 +4,7 @@
   background: url(../img/showposts-background.jpg) no-repeat center fixed; 
   background-size: cover;
   padding-top: 20px;
-  height: 90%;
+  min-height: 90%;
 }
 
 #containerShowPosts {
@@ -40,6 +40,10 @@
   text-decoration:none;
 }
 
+.post a:hover {
+  color: #f44336;
+}
+
 .post h6 {
   border-bottom: 1px solid grey;
   margin: 15px 0px;
@@ -69,3 +73,6 @@
 }
 /*show end*/
 
+.commentform {
+  padding: 10px;
+}
