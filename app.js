@@ -90,6 +90,8 @@ app.post('/login', (req, res) => {
 		}
 	}).then(function(user){
 		console.log(user)
+		bcrypt.compare(req.body.password, user.password, function(err, res) {
+
 		if(req.body.password === user.password) {
 			req.session.user = user;
 			res.redirect('/profile')
@@ -98,6 +100,18 @@ app.post('/login', (req, res) => {
 		}
 	})
 })
+
+	// }).then(function(user){
+	// 	console.log(user)
+	// 	bcrypt.compare(req.body.password, user.password, function(err, result) {
+
+	// 	if(result === true) {
+	// 		req.session.user = user;
+	// 		res.redirect('/profile')
+	// 	} else {
+	// 		res.redirect('/login/?message=' + encodeURIComponent("Invalid username or password."))
+	// 	}
+	// })
 
 // renders corresponding signup.pug file
 app.get ('/signup', (request, response) => {
@@ -108,13 +122,17 @@ app.get ('/signup', (request, response) => {
 
 app.post('/signup', function(req, res){
 	console.log('signup post request is working')  //testing purposes
-	User.create({ //changed to database name
-		username: req.body.username,
-		password: req.body.password,
-		email: req.body.email
-	})
+	bcrypt.hash(req.body.password, 8, function(err, hash) {
+
+		User.create({ //changed to database name
+			username: req.body.username,
+			password: hash,
+			email: req.body.email
+		})
+	
 	.then(()=>{
 		res.redirect('/login'); 
+	})
 	})
 });
 
