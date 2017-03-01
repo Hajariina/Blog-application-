@@ -8,7 +8,8 @@ const 	express = require('express'),
 
 		cookieParser = require('cookie-parser'),
 
-		session = require('express-session')
+		session = require('express-session'),
+		bcrypt = require('bcrypt')
 
 
 var Sequelize = require('sequelize');
@@ -90,28 +91,16 @@ app.post('/login', (req, res) => {
 		}
 	}).then(function(user){
 		console.log(user)
-		bcrypt.compare(req.body.password, user.password, function(err, res) {
-
-		if(req.body.password === user.password) {
-			req.session.user = user;
-			res.redirect('/profile')
-		} else {
-			res.redirect('/login/?message=' + encodeURIComponent("Invalid username or password."))
-		}
+		bcrypt.compare(req.body.password, user.password, function(err, result) {
+			if(result === true) {
+				req.session.user = user;
+				res.redirect('/profile')
+			} else {
+				res.redirect('/login/?message=' + encodeURIComponent("Invalid username or password."))
+			}
+		})
 	})
 })
-
-	// }).then(function(user){
-	// 	console.log(user)
-	// 	bcrypt.compare(req.body.password, user.password, function(err, result) {
-
-	// 	if(result === true) {
-	// 		req.session.user = user;
-	// 		res.redirect('/profile')
-	// 	} else {
-	// 		res.redirect('/login/?message=' + encodeURIComponent("Invalid username or password."))
-	// 	}
-	// })
 
 // renders corresponding signup.pug file
 app.get ('/signup', (request, response) => {
