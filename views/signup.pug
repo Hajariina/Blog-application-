@@ -4,22 +4,46 @@ html
 		include ../static/pug/head-tags.pug
 	body#backgroundlogin
 		include ../static/pug/header.pug
-		form.login(action="/signup" method="post")
+		form.login(action="/signup" method="post" name="loginForm" onsubmit="return validate()")
 			fieldset
 			legend.legend Sign Up
 			.input
-				input(type='text', placeholder='Username', required='' name="username" class='inputfield1')
+				input(type='text', placeholder='Username', name="username" class='inputfield1')
 				span
 					i.fa.fa-envelope-o
 			.input
-				input(type='password', placeholder='Password', required='' name="password" class='inputfield1')
+				input(type='password', placeholder='Password', name="password" class='inputfield1')
 				span
 					i.fa.fa-envelope-o
 			.input
-				input(type='email', placeholder='Email', required='' name="email" class='inputfield1')
+				input(type='email', placeholder='Email', name="email" class='inputfield1')
 				span
 					i.fa.fa-lock
 			|  
 			button.submit(type='submit')
 					i.fa.fa-long-arrow-right
 		include ../static/pug/footer.pug
+
+		script.
+			function validate() {
+
+				if( document.forms.loginForm.username.value == "" ) {
+					alert( "Please provide your username!" );
+					document.loginForm.username.focus() ;
+					return false;
+				}
+
+				if( document.forms.loginForm.password.value == "" ) {
+					alert( "Please provide your password!" );
+					document.loginForm.password.focus() ;
+					return false;
+				}
+
+				if( document.forms.loginForm.email.value == "" ) {
+					alert( "Please provide your e-mail!" );
+					document.loginForm.email.focus() ;
+					return false;
+				}
+
+				return( true );
+			}

@@ -5,7 +5,7 @@ html
 	body#backgroundlogin
 		include ../static/pug/header.pug
 
-		form.login(action="/login" method="post")
+		form.login(action="/login" method="post" name="loginForm" onsubmit="return validate()") 
 			fieldset
 			legend.legend Login
 			.input
@@ -17,16 +17,27 @@ html
 				span
 					i.fa.fa-lock
 			|  
-			button.submit(onclick="location.href='/profile';", type='submit')
+			button.submit(type='submit')
 					i.fa.fa-long-arrow-right
 		include ../static/pug/footer.pug
 
-		//- .feedback
-		//- | login successful
-		//- br
-		//- |  redirecting...
+		script.
+			function validate() {
 
+				if( document.forms.loginForm.username.value == "" ) {
+					alert( "Please provide your username!" );
+					document.loginForm.username.focus() ;
+					return false;
+				}
 
+				if( document.forms.loginForm.password.value == "" ) {
+					alert( "Please provide your password!" );
+					document.loginForm.password.focus() ;
+					return false;
+				}
+
+				return( true );
+			}
 
 
 
