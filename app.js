@@ -9,7 +9,6 @@ const 	express = require('express'),
 		cookieParser = require('cookie-parser'),
 
 		session = require('express-session'),
-
 		bcrypt = require('bcrypt')
 
 
@@ -105,7 +104,7 @@ app.post('/login', (req, res) => {
 
 // renders corresponding signup.pug file
 app.get ('/signup', (request, response) => {
-	response.render('signup', {user: request.session.user}); // last part is added because of the start of the session
+	response.render('signup', {user: request.session.user});
 });
 
 //posts request formulier naar database which is stored in sequelize.
@@ -129,19 +128,6 @@ app.post('/signup', function(req, res){
 // renders corresponding addPost.pug file
 app.get ('/addpost', (req, res) => {
 	res.render('addPost', {user:req.session.user});
-});
-
-
-// renders corresponding allPosts.pug file 
-app.get ('/allposts', (request, response) => {
-	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})
-	.then(function(result){
-		var allMessages = result;
-		Comment.findAll({include: [User, Message]})
-		.then(function(result){
-			response.render('showPosts', {messages: allMessages, comments: result, user: request.session.user});
-		})
-	})
 });
 
 app.post('/allposts', (req, res) => {
@@ -228,7 +214,17 @@ app.get('/notexist', (req, res) =>{
 	res.render('notexist')
 })
 
-
+// renders corresponding showPosts.pug file -- needs testing
+app.get ('/allposts', (request, response) => {
+	Message.findAll({order:[['createdAt', 'DESC']], include: [User, Comment]})
+	.then(function(result){
+		var allMessages = result;
+		Comment.findAll({include: [User, Message]})
+		.then(function(result){
+			response.render('showPosts', {messages: allMessages, comments: result, user: request.session.user});
+		})
+	})
+});
 
 
 // logout --- this still needs work(pug file etc.), talk to lisa about it

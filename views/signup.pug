@@ -16,7 +16,11 @@ html
 				span
 					i.fa.fa-envelope-o
 			.input
-				input(type='email', placeholder='Email', name="email" class='inputfield1')
+				input(type='password', placeholder='Confirm Password', name="confirm_password" class='inputfield1' minlength='8')
+				span
+					i.fa.fa-envelope-o
+			.input
+				input(type='email', placeholder='Email', name="email" class='inputfield1' minlength='8')
 				span
 					i.fa.fa-lock
 			|  
@@ -33,9 +37,15 @@ html
 					return false;
 				}
 
-				if( document.forms.loginForm.password.value == "" ) {
-					alert( "Please provide your password!" );
+				if( document.forms.loginForm.password.value == "") {
+					alert( "Please provide a password with at least 8 characters" );
 					document.loginForm.password.focus() ;
+					return false;
+				}
+
+				if( document.forms.loginForm.confirm_password.value == "") {
+					alert( "Please confirm your password!" );
+					document.loginForm.confirm_password.focus() ;
 					return false;
 				}
 
@@ -47,3 +57,26 @@ html
 
 				return( true );
 			}
+
+			//- $('#password, #confirm_password').on('keyup', function () {
+			//- if ($('#password').val() == $('#confirm_password').val()) {
+			//-   $('#message').html('Matching').css('color', 'green');
+			//- } else 
+			//-   $('#message').html('Not Matching').css('color', 'red');
+			//- });
+
+		//- 	var password = document.getElementById("password"), confirm_password = document.getElementById("confirm_password");
+
+		//- 	function validatePassword(){
+		//- 		if(password.value != confirm_password.value) {
+		//- 		confirm_password.setCustomValidity("Passwords Don't Match");
+		//- 	} else {
+		//- 		confirm_password.setCustomValidity('');
+		//- 		}
+		//- 	}
+
+		//- //- password.onchange = validatePassword;
+		//- //- confirm_password.onkeyup = validatePassword;
+
+
+
